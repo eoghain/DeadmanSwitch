@@ -13,6 +13,10 @@
 		31A06DCB27BF0176007CB65B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A06DB927BF0172007CB65B /* ContentView.swift */; };
 		31A06DCC27BF0176007CB65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31A06DBA27BF0176007CB65B /* Assets.xcassets */; };
 		31A06DCD27BF0176007CB65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31A06DBA27BF0176007CB65B /* Assets.xcassets */; };
+		31A06DD727BF1BDB007CB65B /* TouchDownUpEventModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A06DD627BF1BDA007CB65B /* TouchDownUpEventModifier.swift */; };
+		31A06DD827BF1BDB007CB65B /* TouchDownUpEventModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A06DD627BF1BDA007CB65B /* TouchDownUpEventModifier.swift */; };
+		31A06DDA27BF1C0E007CB65B /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A06DD927BF1C0E007CB65B /* CountdownTimer.swift */; };
+		31A06DDB27BF1C0E007CB65B /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A06DD927BF1C0E007CB65B /* CountdownTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,8 @@
 		31A06DBF27BF0176007CB65B /* DeadmanSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadmanSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A06DC527BF0176007CB65B /* DeadmanSwitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadmanSwitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31A06DC727BF0176007CB65B /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		31A06DD627BF1BDA007CB65B /* TouchDownUpEventModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchDownUpEventModifier.swift; sourceTree = "<group>"; };
+		31A06DD927BF1C0E007CB65B /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,8 @@
 			children = (
 				31A06DB827BF0172007CB65B /* DeadmanSwitchApp.swift */,
 				31A06DB927BF0172007CB65B /* ContentView.swift */,
+				31A06DD627BF1BDA007CB65B /* TouchDownUpEventModifier.swift */,
+				31A06DD927BF1C0E007CB65B /* CountdownTimer.swift */,
 				31A06DBA27BF0176007CB65B /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -177,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A06DCA27BF0176007CB65B /* ContentView.swift in Sources */,
+				31A06DDA27BF1C0E007CB65B /* CountdownTimer.swift in Sources */,
 				31A06DC827BF0176007CB65B /* DeadmanSwitchApp.swift in Sources */,
+				31A06DD727BF1BDB007CB65B /* TouchDownUpEventModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +196,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A06DCB27BF0176007CB65B /* ContentView.swift in Sources */,
+				31A06DDB27BF1C0E007CB65B /* CountdownTimer.swift in Sources */,
 				31A06DC927BF0176007CB65B /* DeadmanSwitchApp.swift in Sources */,
+				31A06DD827BF1BDB007CB65B /* TouchDownUpEventModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

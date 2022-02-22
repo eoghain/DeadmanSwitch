@@ -15,56 +15,40 @@ public class CountdownTimer: ObservableObject {
     }
 
     private(set) var formattedDuration: String = "00:00"
-    private(set) public var limitTimeInterval: TimeInterval
-    private(set) public var nextFractionCompleted: Double = 0.0
-
-    var formattedLimitDuration: String {
-        get {
-//            return timeFormatter.string(from: limitTimeInterval)!
-            return limitTimeInterval.stringFromTimeInterval()
-        }
-    }
-
-    var duration: Double {
-        get {
-            return counter
-        }
-    }
+    private(set) public var maxTimeLimit: TimeInterval
 
     private var timer: Timer?
     private(set) public var status = Status.stop
+    
+    private var incrementValue = 0.1
 
-    // TODO: Figure out how to make this work with milliseconds or fix TimeInterval extension below
-//    private lazy var timeFormatter: DateComponentsFormatter = {
-//        let formatter = DateComponentsFormatter()
-//        formatter.unitsStyle = .positional
-//        formatter.allowedUnits = [.second, .nanosecond]
-//        formatter.zeroFormattingBehavior = [.pad]
-//        return formatter
-//    }()
-
-    private var counter = 0.0 {
+    var portionFull = 1.0
+    var counter = 0.0 {
         willSet {
             objectWillChange.send()
         }
 
         didSet {
-            let reverse = limitTimeInterval - counter // TimeInterval(integerLiteral: Int64(counter))
-//            formattedDuration = timeFormatter.string(from: reverse)!
+            let reverse = maxTimeLimit - counter // TimeInterval(integerLiteral: Int64(counter))
             formattedDuration = reverse.stringFromTimeInterval()
-
-            switch status {
-            case .stop:
-                nextFractionCompleted = 0.0
-            case .countdown:
-                nextFractionCompleted = Double(1 + counter) / limitTimeInterval
-            }
+            portionFull = (maxTimeLimit - counter) / maxTimeLimit
         }
     }
 
     public init(limitTimeInterval: TimeInterval) {
-        self.limitTimeInterval = limitTimeInterval
+        self.maxTimeLimit = limitTimeInterval
     }
+    
+    public func run() {
+        incrementValue = 0.1
+        start()
+    }
+    
+    public func recover() {
+        guard counter < maxTimeLimit else { return }
+        incrementValue = -0.05
+    }
+    
 }
 
 public extension CountdownTimer {
@@ -75,7 +59,6 @@ public extension CountdownTimer {
 
     func reset() {
         status = .stop
-        counter = 0.0
         timer?.invalidate()
     }
 }
@@ -83,14 +66,15 @@ public extension CountdownTimer {
 private extension CountdownTimer {
     func startTimer() {
         status = .countdown
-        counter = 0.0
 
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
 
-            self.counter += 0.1
-            if self.limitTimeInterval <= TimeInterval(self.counter) {
-                self.reset()
+            self.counter += self.incrementValue
+            if self.counter < 0.0 {
+                self.counter = 0.0
+            } else if self.counter >= self.maxTimeLimit {
+                self.counter = self.maxTimeLimit
             }
         }
     }
